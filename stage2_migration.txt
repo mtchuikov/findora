@@ -44,6 +44,7 @@ cat << EOF > ${HOME}/.tendermint/data/priv_validator_state.json
 EOF
 
 #Clear old data and create new folder for docker to mount:
+
 rm -rf ${ROOT_DIR}/abci
 rm -rf ${ROOT_DIR}/tendermint
 mkdir -p ${ROOT_DIR}/findorad
@@ -63,16 +64,34 @@ fns setup -O ${ROOT_DIR}/node.mnemonic
 fns setup -K ${HOME}/.tendermint/config/priv_validator_key.json
 
 #Start your validator container:
-docker run -d \    -v $HOME/.tendermint:/root/.tendermint \    -v $ROOT_DIR/findorad:/tmp/findora \    -p 8669:8669 \    -p 8668:8668 \    -p 8667:8667 \    -p 26657:26657 \    --name findorad \    public.ecr.aws/k6m5b6e2/release/findorad node \    --ledger-dir /tmp/findora \    --tendermint-host 0.0.0.0 \    --tendermint-node-key-config-path="/root/.tendermint/config/priv_validator_key.json" \    --enable-ledger-service \    --enable-query-service
+
+docker run -d \
+    -v $HOME/.tendermint:/root/.tendermint \
+    -v $ROOT_DIR/findorad:/tmp/findora \
+    -p 8669:8669 \
+    -p 8668:8668 \
+    -p 8667:8667 \
+    -p 26657:26657 \
+    --name findorad \
+    public.ecr.aws/k6m5b6e2/release/findorad node \
+    --ledger-dir /tmp/findora \
+    --tendermint-host 0.0.0.0 \
+    --tendermint-node-key-config-path="/root/.tendermint/config/priv_validator_key.json" \
+    --enable-ledger-service \
+    --enable-query-service
+
 
 #Wait till node will be synced:
 #run
+
 curl 'http://localhost:26657/status'
+
 #and find in the output
-"catching_up": false
+#"catching_up": false
 
 #Stake Initial FRA and Set Commission Rate:
-create file staker_memo:
+#create file staker_memo:
+
 cat << EOF > ${HOME}/staker_memo
 {
 "name": "ExampleNode",  
