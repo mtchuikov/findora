@@ -6,7 +6,8 @@
 #Install docker if you do not have one(optional step):
 
 sudo apt-get update
-sudo apt install docker -y
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 
 #Kill tendermint and node validator processes:
 
