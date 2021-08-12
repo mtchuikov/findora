@@ -1,4 +1,4 @@
-#Stage 2 migration steps for Findora testnet
+#Docker migration steps for Findora testnet
 #Steps for Linux. Tested with Ubuntu 20.04
 #YOU PERFORM THESE STEPS ON YOUR OWN RISK AND AUTHOR MAKES NO EXPRESS OR IMPLIED WARRANTY OF ANY KIND!
 #Author assumes you have all files as for node for stage1
