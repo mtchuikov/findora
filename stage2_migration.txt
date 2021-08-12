@@ -93,13 +93,13 @@ curl 'http://localhost:26657/status'
 #Stake Initial FRA and Set Commission Rate:
 #create file staker_memo:
 
-cat << EOF > ${HOME}/staker_memo
+cat staker_memo
 {
-"name": "ExampleNode",  
-"desc": "I am just a example description, please change me.",  "website": "https://www.example.com",  
-"logo": "https://www.example.com/logo"
+  "name": "ExampleNode",
+  "desc": "I am just a example description, please change me.",
+  "website": "https://www.example.com",
+  "logo": "https://www.example.com/logo"
 }
-EOF
 
 #make a stake some FRA
 fns stake -n $((999999 * 1000000)) -R 0.02 -M "$(cat staker_memo)"
